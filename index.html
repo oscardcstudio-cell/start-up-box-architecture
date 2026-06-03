@@ -49,10 +49,23 @@
       max-width: 960px;
       margin: 0 auto;
       padding: 0 2rem;
+    }
+    .hero-wire-row {
+      max-width: 960px;
+      margin: 2.5rem auto 0;
+      padding: 0 2rem;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 3.5rem;
-      align-items: center;
+      gap: 3rem;
+      align-items: start;
+    }
+    .hero-wire-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
     }
     .hero-badge {
       display: inline-flex;
@@ -577,7 +590,7 @@
     }
 
     @media (max-width: 768px) {
-      .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-wire-row { grid-template-columns: 1fr; gap: 1.5rem; }
       .cc-wire { display: none; }
       .strip-inner { grid-template-columns: 1fr; gap: 0; }
       .strip-item { border-right: none; border-bottom: 1px solid var(--border); padding: 0.75rem 0; }
@@ -599,42 +612,62 @@
 </head>
 <body>
 
-  <!-- HERO — titre en tête -->
+  <!-- HERO — titre pleine largeur tout en haut -->
   <header class="hero">
     <div class="hero-inner">
-      <div>
-        <div class="hero-badge">
-          <span class="hero-badge-dot"></span>
-          Configuré — prêt à démarrer
-        </div>
-        <h1>Ton assistant IA<br>connaît ta <span>boîte.</span></h1>
-        <p class="hero-subtitle">Claude lit tes fichiers avant chaque réponse. Stratégie, marque, juridique — tout est chargé. Plus tu remplis, plus il est utile.</p>
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Configuré — prêt à démarrer
       </div>
+      <h1>Ton assistant IA<br>connaît ta <span>boîte.</span></h1>
+      <p class="hero-subtitle">Claude lit tes fichiers avant chaque réponse. Stratégie, marque, juridique — tout est chargé. Plus tu remplis, plus il est utile.</p>
+    </div>
 
-      <!-- Wireframe Claude Code -->
-      <div class="cc-wire" role="img" aria-label="Interface Claude Code">
-        <div class="cc-wire-bar">
-          <span class="cc-dot cc-dot-r"></span>
-          <span class="cc-dot cc-dot-y"></span>
-          <span class="cc-dot cc-dot-g"></span>
-          <span class="cc-wire-title">Claude Code</span>
+    <!-- Wireframes 2 colonnes sous le titre -->
+    <div class="hero-wire-row">
+      <div>
+        <div class="hero-wire-label">Ce que tu tapes</div>
+        <div class="cc-wire" role="img" aria-label="Requête dans Claude Code">
+          <div class="cc-wire-bar">
+            <span class="cc-dot cc-dot-r"></span>
+            <span class="cc-dot cc-dot-y"></span>
+            <span class="cc-dot cc-dot-g"></span>
+            <span class="cc-wire-title">Claude Code — ma-startup/</span>
+          </div>
+          <div class="cc-wire-body">
+            <div class="cc-line cc-comment">// Contexte chargé ✓</div>
+            <div class="cc-line">&nbsp;</div>
+            <div class="cc-line"><span class="cc-prompt">❯ </span><span class="cc-user">Rédige une bio fondateur pour le site</span></div>
+            <div class="cc-line">&nbsp;</div>
+            <div class="cc-line cc-file">  ↳ company/brand/founder.md</div>
+            <div class="cc-line cc-file">  ↳ company/brand/plateforme.md</div>
+            <div class="cc-line cc-file">  ↳ company/brand/guide_editorial.md</div>
+            <div class="cc-line">&nbsp;</div>
+            <div class="cc-line"><span class="cc-prompt">❯ </span><span class="cc-cursor"></span></div>
+          </div>
         </div>
-        <div class="cc-wire-body">
-          <div class="cc-line cc-comment">// Dossier : ma-startup/</div>
-          <div class="cc-line cc-comment">// Contexte chargé ✓</div>
-          <div class="cc-line">&nbsp;</div>
-          <div class="cc-line"><span class="cc-prompt">❯ </span><span class="cc-user">Rédige une bio fondateur pour le site</span></div>
-          <div class="cc-line">&nbsp;</div>
-          <div class="cc-line cc-file">  ↳ company/brand/founder.md</div>
-          <div class="cc-line cc-file">  ↳ company/brand/plateforme.md</div>
-          <div class="cc-line cc-file">  ↳ company/brand/guide_editorial.md</div>
-          <div class="cc-line">&nbsp;</div>
-          <div class="cc-line cc-resp">  "Marie Dupont a cofondé Kaléïdo en 2024</div>
-          <div class="cc-line cc-resp">  après 8 ans dans le conseil en stratégie.</div>
-          <div class="cc-line cc-resp">  Sa conviction : les petites boîtes méritent</div>
-          <div class="cc-line cc-resp">  les mêmes outils que les grands groupes."</div>
-          <div class="cc-line">&nbsp;</div>
-          <div class="cc-line"><span class="cc-prompt">❯ </span><span class="cc-cursor"></span></div>
+      </div>
+      <div>
+        <div class="hero-wire-label">Ce que Claude te répond</div>
+        <div class="cc-wire" role="img" aria-label="Réponse de Claude Code">
+          <div class="cc-wire-bar">
+            <span class="cc-dot cc-dot-r"></span>
+            <span class="cc-dot cc-dot-y"></span>
+            <span class="cc-dot cc-dot-g"></span>
+            <span class="cc-wire-title">Claude Code — réponse</span>
+          </div>
+          <div class="cc-wire-body">
+            <div class="cc-line cc-comment">// Lecture de 3 fichiers...</div>
+            <div class="cc-line">&nbsp;</div>
+            <div class="cc-line cc-resp">"Marie Dupont a cofondé Kaléïdo</div>
+            <div class="cc-line cc-resp">en 2024 après 8 ans en conseil</div>
+            <div class="cc-line cc-resp">stratégie. Sa conviction : les</div>
+            <div class="cc-line cc-resp">petites boîtes méritent les mêmes</div>
+            <div class="cc-line cc-resp">outils que les grands groupes.</div>
+            <div class="cc-line cc-resp">Elle parle vrai, sans jargon."</div>
+            <div class="cc-line">&nbsp;</div>
+            <div class="cc-line cc-comment">// Ton fichier founder.md mis à jour ✓</div>
+          </div>
         </div>
       </div>
     </div>

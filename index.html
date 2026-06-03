@@ -913,14 +913,11 @@ NE REMPLIS RIEN. Audit only.</div>
     function copyPrompt(btnId) {
       const text = document.getElementById('audit-prompt').textContent.trim()
       navigator.clipboard.writeText(text).then(() => {
-        ['copy-btn-hero', 'copy-btn'].forEach(id => {
-          const b = document.getElementById(id)
-          if (!b) return
-          const label = id === 'copy-btn-hero' ? 'Copier le prompt de démarrage' : 'Copier le prompt'
-          b.innerHTML = 'Copié ! ' + ICON_CHECK
-          b.classList.add('copied')
-          setTimeout(() => { b.innerHTML = label + ' ' + ICON_COPY; b.classList.remove('copied') }, 2500)
-        })
+        const b = document.getElementById('copy-btn')
+        if (!b) return
+        b.innerHTML = 'Copié ! ' + ICON_CHECK
+        b.classList.add('copied')
+        setTimeout(() => { b.innerHTML = 'Copier le prompt ' + ICON_COPY; b.classList.remove('copied') }, 2500)
       })
     }
   </script>

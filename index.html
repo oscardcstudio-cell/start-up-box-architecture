@@ -49,10 +49,6 @@
       max-width: 960px;
       margin: 0 auto;
       padding: 0 2rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
     }
     .hero-badge {
       display: inline-flex;
@@ -569,63 +565,8 @@
 </head>
 <body>
 
-  <!-- HERO -->
-  <header class="hero">
-    <div class="hero-inner">
-      <div>
-        <div class="hero-badge">
-          <span class="hero-badge-dot"></span>
-          Configuré — prêt à démarrer
-        </div>
-        <h1>Ton assistant IA<br>connaît ta <span>boîte.</span></h1>
-        <p class="hero-subtitle">Claude lit tes fichiers avant chaque réponse. Stratégie, marque, juridique — tout est chargé. Plus tu remplis, plus il est utile.</p>
-        <div class="hero-actions">
-          <button class="onboarding-btn onboarding-btn--primary hero-cta" id="copy-btn-hero" onclick="copyPrompt('copy-btn-hero')">
-            Copier le prompt de démarrage
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          </button>
-          <div class="hero-links">
-            <a href="https://claude.ai/download" target="_blank" rel="noopener" class="hero-link">Télécharger Claude Code</a>
-            <span class="hero-link-sep">·</span>
-            <a href="https://claude.ai/upgrade" target="_blank" rel="noopener" class="hero-link">Abonnement Max</a>
-          </div>
-        </div>
-      </div>
-      <div class="hero-visual" role="img" aria-label="Schéma de chargement des fichiers par Claude">
-        <div><span class="line-label">$ claude</span></div>
-        <div class="line-comment">// Claude charge le contexte...</div>
-        <div>&nbsp;</div>
-        <div><span class="line-file">✓</span> CLAUDE.md <span class="line-comment">— règles</span></div>
-        <div><span class="line-file">✓</span> llms.txt <span class="line-comment">— inventaire</span></div>
-        <div><span class="line-file">✓</span> company/brand/ <span class="line-comment">— marque</span></div>
-        <div><span class="line-file">✓</span> strategie/ <span class="line-comment">— décisions</span></div>
-        <div><span class="line-file">✓</span> juridique/ <span class="line-comment">— structure</span></div>
-        <div>&nbsp;</div>
-        <div><span class="line-label">&gt;</span> Prêt. Que veux-tu faire ?</div>
-      </div>
-    </div>
-  </header>
-
-  <!-- STRIP -->
-  <div class="strip">
-    <div class="strip-inner">
-      <div class="strip-item">
-        <span class="strip-number">29</span>
-        <span class="strip-label">fichiers de contexte créés</span>
-      </div>
-      <div class="strip-item">
-        <span class="strip-number">0</span>
-        <span class="strip-label">réexplication à chaque session</span>
-      </div>
-      <div class="strip-item">
-        <span class="strip-number">∞</span>
-        <span class="strip-label">contexte chargé selon la demande</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- SECTION 1 : Démarrage — remonté en tête -->
-  <section class="section section-cta">
+  <!-- SECTION DÉMARRAGE — en tête -->
+  <section class="section section-cta" style="border-bottom:1px solid var(--border);">
     <div class="container">
       <p class="section-label">Démarrage</p>
       <h2 class="section-title">3 étapes, c'est tout.</h2>
@@ -674,7 +615,59 @@
               Copier le prompt
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             </button>
-            <div id="audit-prompt" hidden>Je viens de créer un template d'infos entreprise dans `company/`.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          Configuré — prêt à démarrer
+        </div>
+        <h1>Ton assistant IA<br>connaît ta <span>boîte.</span></h1>
+        <p class="hero-subtitle">Claude lit tes fichiers avant chaque réponse. Stratégie, marque, juridique — tout est chargé. Plus tu remplis, plus il est utile.</p>
+        <div class="hero-actions">
+          <button class="onboarding-btn onboarding-btn--primary hero-cta" id="copy-btn-hero" onclick="copyPrompt('copy-btn-hero')">
+            Copier le prompt de démarrage
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          </button>
+          <div class="hero-links">
+            <a href="https://claude.ai/download" target="_blank" rel="noopener" class="hero-link">Télécharger Claude Code</a>
+            <span class="hero-link-sep">·</span>
+            <a href="https://claude.ai/upgrade" target="_blank" rel="noopener" class="hero-link">Abonnement Max</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- STRIP -->
+  <div class="strip">
+    <div class="strip-inner">
+      <div class="strip-item">
+        <span class="strip-number">29</span>
+        <span class="strip-label">fichiers de contexte créés</span>
+      </div>
+      <div class="strip-item">
+        <span class="strip-number">0</span>
+        <span class="strip-label">réexplication à chaque session</span>
+      </div>
+      <div class="strip-item">
+        <span class="strip-number">∞</span>
+        <span class="strip-label">contexte chargé selon la demande</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- audit-prompt caché (utilisé par copyPrompt) -->
+  <div hidden>
+    <div id="audit-prompt">Je viens de créer un template d'infos entreprise dans `company/`.
 Ta mission : auditer ce que tu peux pré-remplir TOI-MÊME à partir des sources existantes du projet, et lister précisément ce qui me reste à fournir.
 
 ## Étape 1 — Inventaire des sources internes
@@ -696,12 +689,8 @@ C. 100% À FOURNIR → fichier · pourquoi
 Tableau 4 colonnes : Fichier | Catégorie | Ce que tu peux écrire | Ce qu'il me faut
 Puis questions numérotées par thème, classées par criticité.
 NE REMPLIS RIEN. Audit only.</div>
-          </div>
-        </div>
-
-      </div>
     </div>
-  </section>
+  </div>
 
   <!-- SECTION 2 : Ce que tu peux lui demander -->
   <section class="section">

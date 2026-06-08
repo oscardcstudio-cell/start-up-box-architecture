@@ -670,7 +670,7 @@
           <div class="onboarding-num onboarding-num--accent">3</div>
           <div class="onboarding-body">
             <div class="onboarding-title">Copie ce prompt dans Claude</div>
-            <div class="onboarding-desc">Ouvre Claude Code, colle ce prompt. Il installe tout (agents + skills), puis te guide pour créer ta boîte avec /create-company. Réponds juste à ses questions.</div>
+            <div class="onboarding-desc">Ouvre Claude Code, colle ce prompt. Il installe tout (agents + skills), puis démarre la création de ta boîte tout seul. Tu n'as aucune commande à taper — réponds juste à ses questions.</div>
             <button class="onboarding-btn onboarding-btn--primary" id="copy-btn" onclick="copyPrompt('copy-btn')">
               Copier le prompt
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
@@ -721,7 +721,7 @@ Exécute ces étapes dans l'ordre avec tes outils bash :
 
 5. Si git n'est pas installé, dis-moi de l'installer depuis https://git-scm.com/downloads puis réessaie.
 
-6. Quand c'est bon, dis "Installation terminée ✓", puis lance /create-company pour créer mon dossier company/, et ensuite /build-company pour démarrer (phase 0 : cadrage de mon idée).</div>
+6. Quand c'est bon, dis "Installation terminée ✓", puis propose de démarrer tout de suite : dès que je réponds (oui / "je veux lancer ma boîte"), lance toi-même la skill build-company (phase 0 : cadrage de mon idée). Je n'ai aucune commande à taper — si le dossier company/ manque, tu le crées tout seul avant de continuer.</div>
     <div id="audit-prompt">Je viens de créer un template d'infos entreprise dans `company/`.
 Ta mission : auditer ce que tu peux pré-remplir TOI-MÊME à partir des sources existantes du projet, et lister précisément ce qui me reste à fournir.
 
@@ -874,7 +874,7 @@ NE REMPLIS RIEN. Audit only.</div>
   <!-- FOOTER -->
   <footer>
     <div class="container">
-      <p>Généré par <a href="https://github.com/oscardcstudio-cell/meta-claude-dev/tree/main/packages/create-company">create-company</a></p>
+      <p>Généré par <a href="https://github.com/oscardcstudio-cell/start-up-box">start-up-box</a></p>
     </div>
   </footer>
 

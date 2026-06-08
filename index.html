@@ -670,7 +670,7 @@
           <div class="onboarding-num onboarding-num--accent">3</div>
           <div class="onboarding-body">
             <div class="onboarding-title">Copie ce prompt dans Claude</div>
-            <div class="onboarding-desc">Ouvre Claude, colle ce prompt. Il analyse ton dossier et remplit tes fichiers avec toi. Réponds juste à ses questions.</div>
+            <div class="onboarding-desc">Ouvre Claude Code, colle ce prompt. Il installe tout (agents + skills), puis te guide pour créer ta boîte avec /create-company. Réponds juste à ses questions.</div>
             <button class="onboarding-btn onboarding-btn--primary" id="copy-btn" onclick="copyPrompt('copy-btn')">
               Copier le prompt
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
@@ -700,8 +700,28 @@
     </div>
   </div>
 
-  <!-- audit-prompt caché (utilisé par copyPrompt) -->
+  <!-- prompts cachés (copiés par copyPrompt) -->
   <div hidden>
+    <div id="install-prompt">Installe start-up-box sur cette machine puis aide-moi à créer ma boîte. C'est un toolkit IA pour lancer une startup de A à Z.
+
+Exécute ces étapes dans l'ordre avec tes outils bash :
+
+1. Clone le repo :
+   git clone https://github.com/oscardcstudio-cell/start-up-box.git ~/.start-up-box
+
+2. Installe les agents :
+   mkdir -p ~/.claude/agents
+   cp ~/.start-up-box/plugins/startup-agents/agents/*.md ~/.claude/agents/
+
+3. Installe les skills :
+   mkdir -p ~/.claude/skills
+   cp -r ~/.start-up-box/plugins/startup-skills/skills/* ~/.claude/skills/
+
+4. Vérifie que ~/.claude/agents/meta-business.md et ~/.claude/skills/build-company/SKILL.md existent.
+
+5. Si git n'est pas installé, dis-moi de l'installer depuis https://git-scm.com/downloads puis réessaie.
+
+6. Quand c'est bon, dis "Installation terminée ✓", puis lance /create-company pour créer mon dossier company/, et ensuite /build-company pour démarrer (phase 0 : cadrage de mon idée).</div>
     <div id="audit-prompt">Je viens de créer un template d'infos entreprise dans `company/`.
 Ta mission : auditer ce que tu peux pré-remplir TOI-MÊME à partir des sources existantes du projet, et lister précisément ce qui me reste à fournir.
 
@@ -863,7 +883,7 @@ NE REMPLIS RIEN. Audit only.</div>
     const ICON_CHECK = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>'
 
     function copyPrompt(btnId) {
-      const text = document.getElementById('audit-prompt').textContent.trim()
+      const text = document.getElementById('install-prompt').textContent.trim()
       navigator.clipboard.writeText(text).then(() => {
         const b = document.getElementById('copy-btn')
         if (!b) return

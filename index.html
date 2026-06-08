@@ -702,7 +702,7 @@
 
   <!-- prompts cachés (copiés par copyPrompt) -->
   <div hidden>
-    <div id="install-prompt">Installe start-up-box sur cette machine puis aide-moi à créer ma boîte. C'est un toolkit IA pour lancer une startup de A à Z.
+    <div id="install-prompt">Installe start-up-box sur cette machine puis aide-moi à créer ma boîte. C'est un toolkit IA pour lancer une startup de A à Z. Je ne suis pas développeur : fais TOUT toi-même, ne me demande aucune commande.
 
 Exécute ces étapes dans l'ordre avec tes outils bash :
 
@@ -713,15 +713,28 @@ Exécute ces étapes dans l'ordre avec tes outils bash :
    mkdir -p ~/.claude/agents
    cp ~/.start-up-box/plugins/startup-agents/agents/*.md ~/.claude/agents/
 
-3. Installe les skills :
+3. Installe les compétences :
    mkdir -p ~/.claude/skills
    cp -r ~/.start-up-box/plugins/startup-skills/skills/* ~/.claude/skills/
 
-4. Vérifie que ~/.claude/agents/meta-business.md et ~/.claude/skills/build-company/SKILL.md existent.
+4. Installe la couche meta (harness + doctrines) :
+   mkdir -p ~/.claude/startup-box
+   cp -r ~/.start-up-box/meta-rules/* ~/.claude/startup-box/
 
-5. Si git n'est pas installé, dis-moi de l'installer depuis https://git-scm.com/downloads puis réessaie.
+5. Installe la mise à jour automatique :
+   mkdir -p ~/.claude/hooks
+   cp ~/.start-up-box/hooks/*.js ~/.claude/hooks/
+   cp ~/.start-up-box/hooks/VERSION ~/.claude/startup-box/.hooks-version
 
-6. Quand c'est bon, dis "Installation terminée ✓", puis propose de démarrer tout de suite : dès que je réponds (oui / "je veux lancer ma boîte"), lance toi-même la skill build-company (phase 0 : cadrage de mon idée). Je n'ai aucune commande à taper — si le dossier company/ manque, tu le crées tout seul avant de continuer.</div>
+6. Branche le harness au-dessus de tous mes projets sans écraser un CLAUDE.md perso : si ~/.claude/CLAUDE.md n'existe pas, crée-le avec la ligne @startup-box/HARNESS.md ; s'il existe sans cette ligne, ajoute-la à la fin.
+
+7. Active la mise à jour à chaque conversation : fusionne dans ~/.claude/settings.json (sans casser l'existant ni créer de doublon) : { "hooks": { "SessionStart": [ { "hooks": [ { "type": "command", "command": "node ~/.claude/hooks/startup-box-update.js" } ] } ] } }
+
+8. Vérifie que ~/.claude/agents/meta-business.md, ~/.claude/skills/build-company/SKILL.md, ~/.claude/startup-box/HARNESS.md et ~/.claude/hooks/startup-box-update.js existent.
+
+9. Si git n'est pas installé, dis-moi de l'installer depuis https://git-scm.com/downloads puis réessaie.
+
+10. Quand c'est bon, dis "Installation terminée ✓", puis propose de démarrer tout de suite : dès que je réponds (oui / "je veux lancer ma boîte"), lance toi-même la skill build-company (phase 0 : cadrage de mon idée). Je n'ai aucune commande à taper — si le dossier company/ manque, tu le crées tout seul avant de continuer.</div>
     <div id="audit-prompt">Je viens de créer un template d'infos entreprise dans `company/`.
 Ta mission : auditer ce que tu peux pré-remplir TOI-MÊME à partir des sources existantes du projet, et lister précisément ce qui me reste à fournir.
 

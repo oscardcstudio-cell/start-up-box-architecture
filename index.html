@@ -675,11 +675,6 @@
               Copier le prompt
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             </button>
-            <div class="onboarding-desc" style="margin-top:16px">Déjà installé avant aujourd'hui ? Mets-toi à jour une fois (ensuite c'est automatique) :</div>
-            <button class="onboarding-btn" id="update-btn" onclick="copyPrompt('update-btn','update-prompt')">
-              Copier le prompt de mise à jour
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            </button>
           </div>
         </div>
 
@@ -740,16 +735,6 @@ Exécute ces étapes dans l'ordre avec tes outils bash :
 9. Si git n'est pas installé, dis-moi de l'installer depuis https://git-scm.com/downloads puis réessaie.
 
 10. Quand c'est bon, dis "Installation terminée ✓", puis propose de démarrer tout de suite : dès que je réponds (oui / "je veux lancer ma boîte"), lance toi-même la skill build-company (phase 0 : cadrage de mon idée). Je n'ai aucune commande à taper — si le dossier company/ manque, tu le crées tout seul avant de continuer.</div>
-    <div id="update-prompt">Mets à jour start-up-box sur cette machine. Je ne suis pas développeur : fais tout toi-même, ne me demande aucune commande.
-
-1. Mets ~/.start-up-box sur la dernière version distante : si le dossier existe, fais un git pull (ou, en cas de conflit local, un reset --hard sur la version distante) ; s'il n'existe pas, clone https://github.com/oscardcstudio-cell/start-up-box.git dans ~/.start-up-box.
-2. Recopie les agents : cp ~/.start-up-box/plugins/startup-agents/agents/*.md ~/.claude/agents/
-3. Recopie les compétences : cp -r ~/.start-up-box/plugins/startup-skills/skills/* ~/.claude/skills/
-4. Installe la couche meta : mkdir -p ~/.claude/startup-box && cp -r ~/.start-up-box/meta-rules/* ~/.claude/startup-box/
-5. Installe la mise à jour automatique : mkdir -p ~/.claude/hooks && cp ~/.start-up-box/hooks/*.js ~/.claude/hooks/ && cp ~/.start-up-box/hooks/VERSION ~/.claude/startup-box/.hooks-version
-6. Branche le harness sans écraser mon CLAUDE.md perso : si ~/.claude/CLAUDE.md ne contient pas la ligne @startup-box/HARNESS.md, ajoute-la à la fin (crée le fichier s'il manque).
-7. Active la mise à jour à chaque conversation : fusionne dans ~/.claude/settings.json (sans créer de doublon, sans casser l'existant) : { "hooks": { "SessionStart": [ { "hooks": [ { "type": "command", "command": "node ~/.claude/hooks/startup-box-update.js" } ] } ] } }
-8. Dis "Mise à jour terminée ✓" et résume ce qui a changé. À partir de maintenant, les mises à jour se font toutes seules.</div>
     <div id="audit-prompt">Je viens de créer un template d'infos entreprise dans `company/`.
 Ta mission : auditer ce que tu peux pré-remplir TOI-MÊME à partir des sources existantes du projet, et lister précisément ce qui me reste à fournir.
 
@@ -935,9 +920,7 @@ NE REMPLIS RIEN. Audit only.</div>
       try {
         const md = await (await fetch(RAW, { cache: 'no-store' })).text()
         const install = extract(md, 'PROMPT')
-        const update = extract(md, 'UPDATE_PROMPT')
         if (install) document.getElementById('install-prompt').textContent = install
-        if (update) document.getElementById('update-prompt').textContent = update
       } catch (e) { /* garde les fallbacks embarqués */ }
     })()
   </script>

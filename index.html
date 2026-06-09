@@ -905,6 +905,21 @@ NE REMPLIS RIEN. Audit only.</div>
         setTimeout(() => { b.innerHTML = 'Copier le prompt ' + ICON_COPY; b.classList.remove('copied') }, 2500)
       })
     }
+
+    // Source unique : le prompt d'install est lu depuis INSTALL.md du repo (entre les
+    // marqueurs PROMPT:START / PROMPT:END). La copie embarquée ci-dessus sert de fallback
+    // si le fetch échoue (offline / GitHub down). Plus de double-maintenance du prompt.
+    (async () => {
+      const RAW = 'https://raw.githubusercontent.com/oscardcstudio-cell/start-up-box/master/INSTALL.md'
+      try {
+        const md = await (await fetch(RAW, { cache: 'no-store' })).text()
+        const between = md.split('<!-- PROMPT:START')[1]?.split('<!-- PROMPT:END')[0]
+        if (!between) return
+        // vire le reste du commentaire START (jusqu'au premier -->), puis les fences ```
+        const prompt = between.replace(/^[\s\S]*?-->/, '').replace(/```[a-z]*\n?/gi, '').trim()
+        if (prompt) document.getElementById('install-prompt').textContent = prompt
+      } catch (e) { /* garde le fallback embarqué */ }
+    })()
   </script>
 </body>
 </html>

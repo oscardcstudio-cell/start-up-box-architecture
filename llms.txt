@@ -1,0 +1,14 @@
+# start-up-box-architecture
+> Page statique d'onboarding qui explique l'architecture de l'assistant IA start-up-box. Déployée sur Railway.
+
+## Vue d'ensemble
+- [CLAUDE.md](CLAUDE.md): règles et commande de lancement
+- [README.md](README.md): installation
+
+## Fichiers critiques
+- [index.html](index.html): toute la page (928 lignes, CSS et JS inline, aucun build)
+- [serve.json](serve.json): config du serveur statique `serve` (pas d'URL propres, pas de listing)
+- [railway.toml](railway.toml): déploiement, démarre avec `npm start`
+
+## Points non-évidents (gotchas)
+- `npm start` utilise `${PORT:-3000}` : ne passe pas sous cmd.exe (Windows), OK sous Linux/Git Bash.

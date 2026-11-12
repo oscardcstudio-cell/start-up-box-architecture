@@ -1,0 +1,7 @@
+{
+  "database": "dolt",
+  "backend": "dolt",
+  "dolt_mode": "embedded",
+  "dolt_database": "start_up_box_architecture",
+  "project_id": "0433871a-0a58-47c7-bfac-e3650c69f869"
+}

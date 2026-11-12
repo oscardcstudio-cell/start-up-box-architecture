@@ -7,3 +7,6 @@ Page statique unique (`index.html`, HTML/CSS/JS inline, aucun build). Lancer : `
 - `npm start` échoue sous cmd.exe (Windows) à cause de `${PORT:-3000}` : utiliser Git Bash ou `npx serve -s -l 3800 .` (`.claude/launch.json`).
 - `serve` est la seule dépendance et elle est utilisée (appelée par le script `start`, Railway lance `npm start`) : ne pas la retirer.
 - Le contenu décrit le dépôt `start-up-box` ; si ses fichiers ou son installation changent, mettre `index.html` à jour.
+
+## Tâches = Beads
+Les tâches restantes vivent dans Beads (`bd ready`, `bd list`), pas dans un fichier de notes. Une tâche finie : `bd close <id>`.
